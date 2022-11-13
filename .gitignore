@@ -1,4 +1,7 @@
 # libs and build directories
-ModName/libs
-ModName/bin
-ModName/obj
+SkillSwap/libs
+SkillSwap/bin
+SkillSwap/obj
+
+# build script
+build.sh
