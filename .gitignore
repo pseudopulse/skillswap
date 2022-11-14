@@ -2,6 +2,7 @@
 SkillSwap/libs
 SkillSwap/bin
 SkillSwap/obj
-
+SkillSwapBuild
+skillswap.zip
 # build script
 build.sh
