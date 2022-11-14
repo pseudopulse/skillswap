@@ -1,0 +1,12 @@
+{
+	"name": "SkillSwap",
+	"version_number": "1.0.0",
+	"website_url": "https://github.com/pseudopulse/skillswap",
+	"description": "Give survivors any skills you want! Configurable with Risk of Options.",
+	"dependencies": [
+		"bbepis-BepInExPack-5.4.9",
+		"RiskofThunder-HookGenPatcher-1.2.1",
+        "tristanmcpherson-R2API-4.4.1",
+		"Rune580-Risk_Of_Options-2.5.3"
+	]
+}

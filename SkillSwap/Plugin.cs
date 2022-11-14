@@ -45,11 +45,12 @@ namespace SkillSwap {
             On.RoR2.CharacterBody.RecalculateStats += (orig, self) => {
                 if (NetworkServer.active && self.isPlayerControlled) {
                     SkillLocator sl = self.skillLocator;
-                    Skills.SwapSkill(sl.primary, Primary.Value);
-                    Skills.SwapSkill(sl.secondary, Secondary.Value);
-                    Skills.SwapSkill(sl.utility, Utility.Value);
-                    Skills.SwapSkill(sl.special, Special.Value);
+                    Skills.SwapSkill(sl.primary, Primary.Value, self.gameObject);
+                    Skills.SwapSkill(sl.secondary, Secondary.Value, self.gameObject);
+                    Skills.SwapSkill(sl.utility, Utility.Value, self.gameObject);
+                    Skills.SwapSkill(sl.special, Special.Value, self.gameObject);
                 }
+                orig(self);
             };
         }
     }

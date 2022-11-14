@@ -13,27 +13,27 @@ namespace SkillSwap {
     public class Skills {
         public static Dictionary<Skill, string> map = new();
         
-        public static void SwapSkill(GenericSkill slot, Skill skill) {
+        public static void SwapSkill(GenericSkill slot, Skill skill, GameObject obj) {
             string guh = "";
             map.TryGetValue(skill, out guh);
             try {
                 SkillDef def = Addressables.LoadAssetAsync<SkillDef>(guh).WaitForCompletion();
-                slot.skillDef = def;
+                slot.SetSkillOverride(obj, def, GenericSkill.SkillOverridePriority.Replacement);
             }
             catch {
                 try {
                     RailgunSkillDef def = Addressables.LoadAssetAsync<RailgunSkillDef>(guh).WaitForCompletion();
-                    slot.skillDef = def;
+                    slot.SetSkillOverride(obj, def, GenericSkill.SkillOverridePriority.Replacement);;
                 }
                 catch {
                     try {
                         SteppedSkillDef def = Addressables.LoadAssetAsync<SteppedSkillDef>(guh).WaitForCompletion();
-                        slot.skillDef = def;
+                        slot.SetSkillOverride(obj, def, GenericSkill.SkillOverridePriority.Replacement);;
                     }
                     catch {
                         try {
                             GroundedSkillDef def = Addressables.LoadAssetAsync<GroundedSkillDef>(guh).WaitForCompletion();
-                            slot.skillDef = def;
+                            slot.SetSkillOverride(obj, def, GenericSkill.SkillOverridePriority.Replacement);;
                         }
                         catch {
                             SkillSwap.ModLogger.LogFatal("the j");
@@ -48,7 +48,6 @@ namespace SkillSwap {
             map.Add(Skill.LightOut, "RoR2/Base/Bandit2/ResetRevolver.asset");
             map.Add(Skill.Desperado, "RoR2/Base/Bandit2/SkullRevolver.asset");
             map.Add(Skill.Knife, "RoR2/Base/Bandit2/SlashBlade.asset");
-            map.Add(Skill.SmokeBomb, "RoR2/Base/Bandit2/ThrowSmokebomb.asset");
             map.Add(Skill.Blast, "RoR2/Base/Bandit2/Bandit2Blast.asset");
             map.Add(Skill.Burst, "RoR2/Base/Bandit2/FireShotgun2.asset");
 
@@ -62,8 +61,6 @@ namespace SkillSwap {
             map.Add(Skill.SuppressiveFire, "RoR2/Base/Commando/CommandoBodyBarrage.asset");
             map.Add(Skill.PhaseRound, "RoR2/Base/Commando/CommandoBodyFireFMJ.asset");
             map.Add(Skill.PhaseBlast, "RoR2/Base/Commando/CommandoBodyFireShotgunBlast.asset");
-            map.Add(Skill.TacticalDive, "RoR2/Base/Commando/CommandoBodyRoll.asset");
-            map.Add(Skill.TacticalSlide, "RoR2/Base/Commando/CommandoSlide.asset");
             map.Add(Skill.FragGrenades, "RoR2/Base/Commando/ThrowGrenade.asset");
             map.Add(Skill.DoubleTap, "RoR2/Base/Commando/CommandoBodyFirePistol.asset");
 
@@ -95,8 +92,6 @@ namespace SkillSwap {
 
             // lodr
             map.Add(Skill.Pylon, "RoR2/Base/Loader/ThrowPylon.asset");
-            map.Add(Skill.Punch, "RoR2/Base/Loader/ChargeFist.asset");
-            map.Add(Skill.ElectricPunch, "RoR2/Base/Loader/ChargeZapFist.asset");
             map.Add(Skill.Thunderslam, "RoR2/Base/Loader/GroundSlam.asset");
             map.Add(Skill.FistSwing, "RoR2/Base/Loader/SwingFist.asset");
             
@@ -136,21 +131,15 @@ namespace SkillSwap {
             map.Add(Skill.Disperse, "RoR2/Base/Treebot/TreebotBodySonicBoom.asset");
 
             // railgunner
-            map.Add(Skill.Super, "RoR2/DLC1/Railgunner/RailgunnerBodyChargeSnipeSuper.asset");
-            map.Add(Skill.Cryo, "RoR2/DLC1/Railgunner/RailgunnerBodyChargeSnipeCryo.asset");
             map.Add(Skill.SmartRounds, "RoR2/DLC1/Railgunner/RailgunnerBodyFirePistol.asset");
             map.Add(Skill.Mines, "RoR2/DLC1/Railgunner/RailgunnerBodyFireMineConcussive.asset");
             map.Add(Skill.Polar, "RoR2/DLC1/Railgunner/RailgunnerBodyFireMineBlinding.asset");
-            map.Add(Skill.M99, "RoR2/DLC1/Railgunner/RailgunnerBodyScopeHeavy.asset");
-            map.Add(Skill.H44, "RoR2/DLC1/Railgunner/RailgunnerBodyScopeLight.asset");
 
             // void fiend
             map.Add(Skill.Drown, "RoR2/DLC1/VoidSurvivor/FireHandBeam.asset");
             map.Add(Skill.DrownCorrupt, "RoR2/DLC1/VoidSurvivor/FireCorruptBeam.asset");
             map.Add(Skill.Flood, "RoR2/DLC1/VoidSurvivor/ChargeMegaBlaster.asset");
             map.Add(Skill.FloodCorrupt, "RoR2/DLC1/VoidSurvivor/FireCorruptDisk.asset");
-            map.Add(Skill.Trespass, "RoR2/DLC1/VoidSurvivor/VoidBlinkUp.asset");
-            map.Add(Skill.TrespassCorrupt, "RoR2/DLC1/VoidSurvivor/VoidBlinkDown.asset");
         }
     }
 
@@ -159,8 +148,6 @@ namespace SkillSwap {
         DoubleTap,
         PhaseRound,
         PhaseBlast,
-        TacticalDive,
-        TacticalSlide,
         SuppressiveFire,
         FragGrenades,
 
@@ -178,7 +165,6 @@ namespace SkillSwap {
         Burst,
         Knife,
         Shiv,
-        SmokeBomb,
         LightOut,
         Desperado,
 
@@ -202,7 +188,6 @@ namespace SkillSwap {
         Carbonizer,
 
         // merc
-        LaserSword,
         Whirlwind,
         RisingThunder,
         Blinding,
@@ -220,8 +205,6 @@ namespace SkillSwap {
 
         // lodr
         FistSwing,
-        Punch,
-        ElectricPunch,
         Pylon,
         Thunderslam,
 
@@ -245,17 +228,11 @@ namespace SkillSwap {
         DrownCorrupt,
         Flood,
         FloodCorrupt,
-        Trespass,
-        TrespassCorrupt,
 
         // railr
         SmartRounds,
-        M99,
-        H44,
         Mines,
         Polar,
-        Super,
-        Cryo,
 
         // acrid
         Wounds,
