@@ -25,6 +25,7 @@ namespace SkillSwap {
             // set logger
             ModLogger = Logger;
 
+
     
             [SystemInitializer(new Type[] {typeof(SkillCatalog), typeof(SurvivorCatalog)})]
             void Guh() {
