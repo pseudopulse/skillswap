@@ -376,7 +376,7 @@ namespace SkillSwap {
                     }
                 }
                 else {
-                    return orig(self, str);
+                    return orig(self,str) ?? self.transform.Find("TheFunny");
                 }
             };
 
@@ -468,9 +468,10 @@ namespace SkillSwap {
             };
 
             On.EntityStates.BaseState.FindHitBoxGroup += (orig, self, str) => {
-                if (orig(self, str)) {
+                var ret = orig(self,str);
+                if ( ret) {
                     Debug.Log("returning the real one");
-                    return orig(self, str);
+                    return ret;
                 }
                 else {
                     Debug.Log("returning the default one");
@@ -479,8 +480,9 @@ namespace SkillSwap {
             };
 
             On.RoR2.SkillLocator.FindSkillByFamilyName += (orig, self, str) => {
-                if (orig(self, str)) {
-                    return orig(self, str);
+                var ret = orig(self,str);
+                if (ret) {
+                    return ret;
                 }
                 else {
                     if (self.secondary) {
