@@ -2,6 +2,11 @@
 A mod that allows you to use the skills of any survivor on any survivor. 
 
 # Changelog
+## 2.2.0
+- added config for locking skills to their usual slots
+- made vfx try to use a random muzzle before defaulting to the generic transform
+- made huntress homing skills work properly
+- equipping a void fiend special will give you the void corruption passive
 ## 2.1.0
 - filtered out every enemy skill so your fps doesnt die instantly and it doesnt take 4 years to reach a skill
 ## 2.0.0
