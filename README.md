@@ -2,6 +2,18 @@
 A mod that allows you to use the skills of any survivor on any survivor. 
 
 # Changelog
+## 2.3.0
+- rewrote the mod (again)
+- heretic skills no longer appear (no more nevermore lets goooooo)
+- fixed a bunch of stuff
+- made alot of broken skills actually work
+- fixed melee hitboxes
+- fixed corruption
+- fixed power mode
+- fixed beacons
+- fixed retool
+- fixed acrid skills not applying a passive
+- ADDED PASSIVE SUPPORT LETS GOOOOOO
 ## 2.2.0
 - added config for locking skills to their usual slots
 - made vfx try to use a random muzzle before defaulting to the generic transform
